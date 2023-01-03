@@ -1,0 +1,1 @@
+﻿UPDATE Customers SET [CompanyName] = N'ООО "Инт"' WHERE Id = '3'
