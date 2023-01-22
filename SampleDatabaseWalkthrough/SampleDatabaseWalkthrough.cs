@@ -2,16 +2,18 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.ComponentModel;
-using SampleDatabaseWalkthrough.SampleDatabaseDataSetTableAdapters;
+using System.Data.Linq;
+using System;
 
 namespace SampleDatabaseWalkthrough
 {
-    // Класс SampleDatabase использует классические sql запросы
-    public class SampleDatabase : Customers
+    /// <summary>
+    /// Класс SampleDatabase использует классические sql запросы
+    /// </summary>
+    public class SampleDatabase : Customer
     {
         // Создание экземпляра списка customers
-        List<Customers> customers = new List<Customers>();
+        List<Customer> customers = new List<Customer>();
         public bool Result { get; set; }
 
         DataSet ds; // Объявление набора данных
@@ -91,8 +93,12 @@ namespace SampleDatabaseWalkthrough
             return Id;
         }
 
-        // Чтение содержимого существующей записи с глобальной переменной Id и возврат CustomerID для последующей
-        // проверки в классе SampleDatabase описания шагов  на соотвествие ожидаемому результату
+        /// <summary>
+        /// Чтение содержимого существующей записи с глобальной переменной Id и возврат CustomerID для последующей
+        /// проверки в классе SampleDatabase описания шагов  на соотвествие ожидаемому результату
+        /// </summary>
+        /// <param name="id">идентификатор клиента</param>
+        /// <returns>Возвращает CustomerID</returns>
         public string SampleDatabaseRead(int id)
         {
             int Id = id;
@@ -112,7 +118,7 @@ namespace SampleDatabaseWalkthrough
                 {
                     while (reader.Read())
                     {
-                        var customer = new Customers();
+                        var customer = new Customer();
                         customer.Id = (int)reader["Id"];
                         customer.CustomerID = (string)reader["CustomerID"];
                         customer.CompanyName = (string)reader["CompanyName"];
@@ -133,5 +139,40 @@ namespace SampleDatabaseWalkthrough
             }
             return CustomerID;
         }
+    }
+
+    public class SampleDatabaseLinq : Customer
+    {
+        // Создание списка клиентов
+        List<Customer> customers = new List<Customer>();
+        public int SelectIdSampleDatabaseLinq(int id)
+        {
+            // Строка подключения.
+            DataContext db = new DataContext
+                (@"(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\VS2022_Projects\SampleDatabaseWalkthrough\SampleDatabaseWalkthrough\SampleDatabase.mdf");
+
+            // Получить типизированную таблицу для выполнения запроса.
+            Table<Customer> Customers = db.GetTable<Customer>();
+
+            // Запрос по клиентам с указанным id
+            IQueryable<Customer> custQuery =
+                from cust in Customers
+                where cust.Id == id
+                select cust;
+
+            foreach (Customer cust in custQuery)
+            {
+                var customer = new Customer();
+                customer.Id = cust.Id;
+                customer.CustomerID = cust.CustomerID;
+                customer.CompanyName = cust.CompanyName;
+                customer.ContactName = cust.ContactName;
+                customer.Phone = cust.Phone;
+
+                customers.Add(customer);
+            }
+            return Id;
+        }
+
     }
 }

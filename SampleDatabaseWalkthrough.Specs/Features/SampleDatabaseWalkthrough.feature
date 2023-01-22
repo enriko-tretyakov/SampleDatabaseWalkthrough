@@ -15,9 +15,18 @@ Scenario Outline: Add data for existing customer
 	| CompanyName | ООО "ИнфоТек"   |  
 	| ContactName | Сидоров И. С.   |
 	| Phone       | 111-123         |
+	And NewData
+	| Key         | Value			 |
+	| CompanyName | ООО "ИнфоСервис" |  
+	| ContactName | Петров П. С.     |
+	| Phone       | 222-321          |
 	When If Customer Exist
 	Then CustomerID shoul be <CustomerID>
+	And RestSum should be
+	| Key            | Value         |
+	| searchNameXml  | RestSum       |
+	| searchValueXml | 1260.00000000 |
 
 Examples: 
 	| CustomerID  |
-	| "C0003"	  |
+	| "C0004"	  |

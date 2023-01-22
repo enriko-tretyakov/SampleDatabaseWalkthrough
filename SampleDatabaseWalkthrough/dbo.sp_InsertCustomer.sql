@@ -1,9 +1,12 @@
-﻿CREATE TABLE [dbo].[Customers] (
-    [Id]          INT           NOT NULL,
-    [CustomerID]  NCHAR (5)     NOT NULL,
-    [CompanyName] NVARCHAR (50) NOT NULL,
-    [ContactName] NVARCHAR (50) NULL,
-    [Phone]       INT NULL,
-    CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED ([CustomerID] ASC)
-);
+﻿CREATE PROCEDURE [dbo].[sp_InsertCustomer]
+    @Id int,
+    @customerID nchar(5),
+	@companyName  nvarchar(50),
+	@contactName  nvarchar(50),
+    @Phone nvarchar(24)
+AS
+    INSERT INTO Customers(Id, CustomerID, CompanyName, ContactName, Phone)
+    VALUES (@Id, @customerID, @companyName, @contactName, @Phone)
+  
+    SELECT SCOPE_IDENTITY()
 

@@ -81,7 +81,7 @@ Link to a feature: [SampleDatabaseWalkthrough](SampleDatabaseWalkthrough.Specs/F
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add data for existing customer")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("\"C0003\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"C0004\"", null)]
         public virtual void AddDataForExistingCustomer(string customerID, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -132,11 +132,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.And("CustomerData", ((string)(null)), table1, "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table2.AddRow(new string[] {
+                            "CompanyName",
+                            "ООО \"ИнфоСервис\""});
+                table2.AddRow(new string[] {
+                            "ContactName",
+                            "Петров П. С."});
+                table2.AddRow(new string[] {
+                            "Phone",
+                            "222-321"});
 #line 18
+ testRunner.And("NewData", ((string)(null)), table2, "And ");
+#line hidden
+#line 23
  testRunner.When("If Customer Exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 24
  testRunner.Then(string.Format("CustomerID shoul be {0}", customerID), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table3.AddRow(new string[] {
+                            "searchNameXml",
+                            "RestSum"});
+                table3.AddRow(new string[] {
+                            "searchValueXml",
+                            "1260.00000000"});
+#line 25
+ testRunner.And("RestSum should be", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

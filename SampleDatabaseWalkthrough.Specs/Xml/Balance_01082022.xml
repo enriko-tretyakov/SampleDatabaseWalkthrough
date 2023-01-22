@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="windows-1251" ?> 
+<ClientRest UnloadDate="2023-01-17" Version="9" Procedure="spALMainPortfolioBalanceGetXMLKernel9" DB="AtonBase" xmlns="http://www.aton-line.ru/svu/XMLSchema_ClientRest" xmlns:loc="http://www.w3.org/2001/XMLSchema"> 
+    <ClientRestRec> 
+        <Period>2022-08-01Z</Period> 
+        <CpID>27351100</CpID> 
+        <RestSumReal>1260.00000000</RestSumReal> 
+        <RestSum>1260.00000000</RestSum> 
+        <RestSumCurPlan>1260.00000000</RestSumCurPlan> 
+        <RestSumPIF_UAMReal>0.00000000</RestSumPIF_UAMReal> 
+        <RestSumPIF_UAM>0.00000000</RestSumPIF_UAM> 
+        <MaxUCF>1260.00000000</MaxUCF> 
+        <RestSumRUB>0.00000000</RestSumRUB> 
+        <RestSumUSD>0.00000000</RestSumUSD> 
+        <ClientsCredSum>0.00000000</ClientsCredSum> 
+        <RestSumForts>0.00000000</RestSumForts> 
+        <InitialMarginFORTS>0.00000000</InitialMarginFORTS> 
+        <NegativeRUB>0.00000000</NegativeRUB> 
+        <MarginRUB>0.00000000</MarginRUB> 
+        <MarginUSD>0.00000000</MarginUSD> 
+        <CFOnBlockedVaultsRUB>0.00000000</CFOnBlockedVaultsRUB> 
+    </ClientRestRec> 
+</ClientRest>
